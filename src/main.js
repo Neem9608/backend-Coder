@@ -11,7 +11,7 @@ const funcionAsync = async () => {
     productManager.saveProductsToFile('products.json');
     console.log('Productos después de agregar:', productManager.getProducts());
 
-    const productToUpdate = productManager.getProductById(1);
+    // const productToUpdate = productManager.getProductById(1);
     productManager.updateProduct(1, { title: "Producto modificado" });
     productManager.saveProductsToFile('products.json');
     console.log('Productos después de modificar:', productManager.getProducts());
