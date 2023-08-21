@@ -1,21 +1,95 @@
-El código define una clase llamada `ProductManager` que se encarga de gestionar una lista de productos. La clase tiene varios métodos para realizar operaciones como agregar, obtener y eliminar productos.
 
-1. **Constructor**: Al instanciar la clase `ProductManager`, se inicializa la lista de productos como un array vacío.
+# Aplicación de Gestión de Productos
 
-2. **`loadProductsFromFile(filename)`**: Carga la lista de productos desde un archivo JSON. Si la carga falla, la lista se mantiene vacía.
+Esta es una aplicación de gestión de productos construida con Express.js que te permite administrar una lista de productos y realizar consultas específicas sobre ellos.
 
-3. **`saveProductsToFile(filename)`**: Guarda la lista de productos en un archivo JSON.
+## Funcionalidades
 
-4. **`getProducts()`**: Devuelve la lista actual de productos almacenados.
+1. **Cargar Productos desde Archivo JSON**: La aplicación carga automáticamente una lista de productos desde un archivo JSON al iniciarse.
 
-5. **`getId()`**: Calcula y devuelve un nuevo ID único para un producto. El ID se basa en la longitud actual de la lista de productos más uno.
+2. **Consulta de Todos los Productos**:
+   - Ruta: `/products`
+   - Método: GET
+   - Descripción: Devuelve una lista de todos los productos almacenados en la base de datos.
+   - Ejemplo de respuesta:
+     ```json
+     [
+       {
+         "title": "productTitle",
+         "description": "Modo description",
+         "price": 200,
+         "thumbnail": "Sin imagen",
+         "code": "abc123",
+         "stock": 78,
+         "id": 1
+       },
+       // ... otros productos ...
+     ]
+     ```
 
-6. **`addProduct(title, description, price, thumbnail, code, stock)`**: Agrega un nuevo producto a la lista de productos. Verifica si el código del producto ya está en uso antes de agregarlo. Si el código está repetido, muestra un mensaje en la consola. Si no está repetido, agrega el nuevo producto a la lista con un ID único.
+3. **Consulta de Productos con Límite**:
+   - Ruta: `/products?limit=5`
+   - Método: GET
+   - Descripción: Devuelve una lista de los primeros productos según el límite especificado en la consulta.
+   - Ejemplo de respuesta:
+     ```json
+     [
+       {
+         "title": "productTitle",
+         "description": "Modo description",
+         "price": 200,
+         "thumbnail": "Sin imagen",
+         "code": "abc123",
+         "stock": 78,
+         "id": 1
+       },
+       {
+         "title": "productTitle",
+         "description": "Modo description",
+         "price": 200,
+         "thumbnail": "Sin imagen",
+         "code": "abc133",
+         "stock": 73,
+         "id": 2
+       },
+       // ... otros productos ...
+     ]
+     ```
 
-7. **`getProductById(id)`**: Busca y devuelve un producto específico en función de su ID. Si no se encuentra el producto, lanza un error.
+4. **Consulta de Producto por ID**:
+   - Ruta: `/products/:id`
+   - Método: GET
+   - Descripción: Devuelve un producto específico según el ID proporcionado en la URL.
+   - Ejemplo de respuesta:
+     ```json
+     {
+       "title": "productTitle",
+       "description": "Modo description",
+       "price": 200,
+       "thumbnail": "Sin imagen",
+       "code": "abc123",
+       "stock": 78,
+       "id": 1
+     }
+     ```
 
-8. **`updateProduct(id, fields)`**: Busca un producto por su ID y actualiza sus campos según los valores proporcionados en el objeto `fields`. No se permite actualizar el campo `id`.
+5. **Manejo de Error para ID no Encontrado**:
+   - Si se intenta acceder a la ruta `/products/:id` con un ID no existente, se devuelve un objeto de error.
+   - Ejemplo de respuesta:
+     ```json
+     {
+       "error": "Producto no encontrado"
+     }
+     ```
 
-9. **`deleteProduct(id)`**: Busca y elimina un producto específico en función de su ID. Si el producto se encuentra y se elimina, la lista de productos se actualiza. Si no se encuentra el producto, lanza un error.
+## Ejecución
 
-En resumen, la clase `ProductManager` simula la funcionalidad de gestionar una lista de productos, permitiendo cargar y guardar productos desde y hacia un archivo JSON, agregar nuevos productos, obtener información de productos existentes, actualizar información de productos y eliminar productos según su ID.
+1. Instala las dependencias utilizando `npm install`.
+2. Asegúrate de que el archivo `products.json` contenga al menos 10 productos.
+3. Ejecuta la aplicación con `node app.js` ó `npm start`.
+4. Abre tu navegador y accede a las diferentes rutas mencionadas anteriormente para probar las funcionalidades.
+
+## Autor
+
+Escobar `backend`
+
