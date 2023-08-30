@@ -1,93 +1,12 @@
-
 [
   {
-    "title": "productTitle",
-    "description": "Modo description",
-    "price": 200,
-    "thumbnail": "Sin imagen",
-    "code": "abc123",
-    "stock": 78,
+    "title": "The Black",
+    "description": "Libro oscuro",
+    "price": 1996,
+    "thumbnail": "No image available",
+    "code": 896,
+    "stock": 20,
+    "status": true,
     "id": 1
-  },
-  {
-    "title": "productTitle",
-    "description": "Modo description",
-    "price": 200,
-    "thumbnail": "Sin imagen",
-    "code": "abc133",
-    "stock": 73,
-    "id": 2
-  },
-  {
-    "title": "productTitle",
-    "description": "Modo description",
-    "price": 200,
-    "thumbnail": "Sin imagen",
-    "code": "abc122",
-    "stock": 45,
-    "id": 3
-  },
-  {
-    "title": "productTitle",
-    "description": "Modo description",
-    "price": 200,
-    "thumbnail": "Sin imagen",
-    "code": "abc13",
-    "stock": 35,
-    "id": 4
-  },
-  {
-    "title": "productTitle",
-    "description": "Modo description",
-    "price": 200,
-    "thumbnail": "Sin imagen",
-    "code": "abc3",
-    "stock": 65,
-    "id": 5
-  },
-  {
-    "title": "productTitle",
-    "description": "Modo description",
-    "price": 200,
-    "thumbnail": "Sin imagen",
-    "code": "abc23",
-    "stock": 55,
-    "id": 6
-  },
-  {
-    "title": "productTitle",
-    "description": "Modo description",
-    "price": 200,
-    "thumbnail": "Sin imagen",
-    "code": "ab3",
-    "stock": 74,
-    "id": 7
-  },
-  {
-    "title": "productTitle",
-    "description": "Modo description",
-    "price": 200,
-    "thumbnail": "Sin imagen",
-    "code": "abc1223",
-    "stock": 75,
-    "id": 8
-  },
-  {
-    "title": "productTitle",
-    "description": "Modo description",
-    "price": 200,
-    "thumbnail": "Sin imagen",
-    "code": "abc223",
-    "stock": 73,
-    "id": 9
-  },
-  {
-    "title": "productTitle",
-    "description": "Modo description",
-    "price": 200,
-    "thumbnail": "Sin imagen",
-    "code": "abc113",
-    "stock": 25,
-    "id": 10
   }
 ]

@@ -1,93 +1,90 @@
 
-# Aplicación de Gestión de Productos
+# Proyecto de Gestión de Productos y Carritos
 
-Esta es una aplicación de gestión de productos construida con Express.js que te permite administrar una lista de productos y realizar consultas específicas sobre ellos.
+Este es un proyecto de una aplicación de gestión de productos y carritos desarrollado con Node.js y Express. La aplicación permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) en productos y carritos, siguiendo las especificaciones detalladas a continuación.
 
 ## Funcionalidades
 
-1. **Cargar Productos desde Archivo JSON**: La aplicación carga automáticamente una lista de productos desde un archivo JSON al iniciarse.
+### Gestión de Productos
 
-2. **Consulta de Todos los Productos**:
-   - Ruta: `/products`
-   - Método: GET
-   - Descripción: Devuelve una lista de todos los productos almacenados en la base de datos.
-   - Ejemplo de respuesta:
-     ```json
-     [
-       {
-         "title": "productTitle",
-         "description": "Modo description",
-         "price": 200,
-         "thumbnail": "Sin imagen",
-         "code": "abc123",
-         "stock": 78,
-         "id": 1
-       },
-       // ... otros productos ...
-     ]
-     ```
+#### Listar todos los productos
 
-3. **Consulta de Productos con Límite**:
-   - Ruta: `/products?limit=5`
-   - Método: GET
-   - Descripción: Devuelve una lista de los primeros productos según el límite especificado en la consulta.
-   - Ejemplo de respuesta:
-     ```json
-     [
-       {
-         "title": "productTitle",
-         "description": "Modo description",
-         "price": 200,
-         "thumbnail": "Sin imagen",
-         "code": "abc123",
-         "stock": 78,
-         "id": 1
-       },
-       {
-         "title": "productTitle",
-         "description": "Modo description",
-         "price": 200,
-         "thumbnail": "Sin imagen",
-         "code": "abc133",
-         "stock": 73,
-         "id": 2
-       },
-       // ... otros productos ...
-     ]
-     ```
+- Ruta: `GET /api/products`
+- Descripción: Retorna una lista de todos los productos disponibles en la base de datos.
+- Respuesta: JSON que contiene un array de objetos de productos.
 
-4. **Consulta de Producto por ID**:
-   - Ruta: `/products/:id`
-   - Método: GET
-   - Descripción: Devuelve un producto específico según el ID proporcionado en la URL.
-   - Ejemplo de respuesta:
-     ```json
-     {
-       "title": "productTitle",
-       "description": "Modo description",
-       "price": 200,
-       "thumbnail": "Sin imagen",
-       "code": "abc123",
-       "stock": 78,
-       "id": 1
-     }
-     ```
+#### Obtener un producto por su ID
 
-5. **Manejo de Error para ID no Encontrado**:
-   - Si se intenta acceder a la ruta `/products/:id` con un ID no existente, se devuelve un objeto de error.
-   - Ejemplo de respuesta:
-     ```json
-     {
-       "error": "Producto no encontrado"
-     }
-     ```
+- Ruta: `GET /api/products/:pid`
+- Parámetros:
+  - `pid`: ID del producto que se desea obtener.
+- Descripción: Retorna los detalles del producto correspondiente al ID proporcionado.
+- Respuesta: JSON con los detalles del producto.
 
-## Ejecución
+#### Agregar un nuevo producto
 
-1. Instala las dependencias utilizando `npm install`.
-2. Asegúrate de que el archivo `products.json` contenga al menos 10 productos.
-3. Ejecuta la aplicación con `node app.js` ó `npm start`.
-4. Abre tu navegador y accede a las diferentes rutas mencionadas anteriormente para probar las funcionalidades.
+- Ruta: `POST /api/products`
+- Descripción: Agrega un nuevo producto a la base de datos con los campos especificados.
+- Cuerpo de la solicitud (JSON):
+  - `title`: Título del producto (string, obligatorio).
+  - `description`: Descripción del producto (string, obligatorio).
+  - `code`: Código del producto (string, obligatorio).
+  - `price`: Precio del producto (number, obligatorio).
+  - `stock`: Cantidad en stock del producto (number, obligatorio).
+  - `status`: Estado del producto (boolean, opcional, valor por defecto: true).
+  - `thumbnail`: Ruta de la imagen del producto (string, opcional).
+- Respuesta: Mensaje de éxito.
+
+#### Actualizar un producto existente
+
+- Ruta: `PUT /api/products/:pid`
+- Parámetros:
+  - `pid`: ID del producto que se desea actualizar.
+- Descripción: Actualiza los campos del producto correspondiente al ID proporcionado.
+- Cuerpo de la solicitud (JSON): Campos a actualizar.
+- Respuesta: Mensaje de éxito.
+
+#### Eliminar un producto por su ID
+
+- Ruta: `DELETE /api/products/:pid`
+- Parámetros:
+  - `pid`: ID del producto que se desea eliminar.
+- Descripción: Elimina el producto correspondiente al ID proporcionado.
+- Respuesta: Mensaje de éxito.
+
+### Gestión de Carritos
+
+#### Crear un nuevo carrito
+
+- Ruta: `POST /api/carts`
+- Descripción: Crea un nuevo carrito vacío en la base de datos.
+- Respuesta: Mensaje de éxito.
+
+#### Listar los productos de un carrito por su ID
+
+- Ruta: `GET /api/carts/:cid`
+- Parámetros:
+  - `cid`: ID del carrito del cual se desea obtener los productos.
+- Descripción: Retorna los productos incluidos en el carrito correspondiente al ID proporcionado.
+- Respuesta: JSON que contiene un array de objetos de productos.
+
+#### Agregar productos a un carrito existente
+
+- Ruta: `POST /api/carts/:cid/product/:pid`
+- Parámetros:
+  - `cid`: ID del carrito al que se desea agregar el producto.
+  - `pid`: ID del producto que se desea agregar al carrito.
+- Descripción: Agrega el producto especificado al carrito correspondiente al ID proporcionado.
+- Respuesta: Mensaje de éxito.
+
+## Instalación y Uso
+
+1. Clona este repositorio en tu máquina local.
+2. Navega a la carpeta raíz del proyecto en tu terminal.
+3. Ejecuta `npm install` para instalar las dependencias.
+4. Ejecuta `npm start` para iniciar el servidor.
+5. Utiliza herramientas como Postman o Thunder Client para realizar solicitudes a las rutas API.
+
 
 ## Autor
 

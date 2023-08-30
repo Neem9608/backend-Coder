@@ -1,65 +1,63 @@
 // productManager.js
-const fs = require("fs");
-
-class Product {
-  constructor(title, description, price, thumbnail, code, stock) {
-    this.title = title;
-    this.description = description;
-    this.price = price;
-    this.thumbnail = thumbnail;
-    this.code = code;
-    this.stock = stock;
-  }
-}
+import fs from "fs";
 
 class ProductManager {
-  constructor() {
-    this.products = [];
-  }
-
-  loadProductsFromFile(filename) {
-    const data = fs.readFileSync(filename, "utf8");
-    this.products = JSON.parse(data);
-  }
-
-  saveProductsToFile(filename) {
-    fs.writeFileSync(
-      filename,
-      JSON.stringify(this.products, null, "\t"),
-      "utf8"
-    );
-  }
-
-  getProducts() {
-    return this.products;
-  }
-
-  findProductById(id) {
-    if (typeof id !== "number") {
-      throw new Error("Invalid id");
+    constructor(file) {
+        this.path = file;
     }
 
-    return this.products.find((p) => p.id === id);
-  }
-
-  addProduct(title, description, price, thumbnail, code, stock) {
-    if (!title || !price) {
-      throw new Error("Title and price are required");
+    async getProducts() {
+        const data = JSON.parse(await fs.promises.readFile(this.path, "utf-8"));
+        return data;
     }
 
-    const product = new Product(
-      title,
-      description,
-      price,
-      thumbnail,
-      code,
-      stock
-    );
-    product.id = this.products.length + 1;
-    this.products.push(product);
+    async addProduct(newProduct) {
+        try {
+            const data = await this.getProducts();
+            const repeatCode = data.some((e) => e.code === newProduct.code);
 
-    return product;
-  }
+            if (repeatCode) {
+                console.log("El código está repetido");
+            } else {
+                const id = await this.getId();
+                data.push({ ...newProduct, id });
+                await this.writeToFile(data);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    async getProductsById(id) {
+        const data = await this.getProducts();
+        return data.find((e) => e.id == id);
+    }
+
+    async deleteProduct(id) {
+        const data = await this.getProducts();
+        const updatedData = data.filter((e) => e.id !== id);
+        await this.writeToFile(updatedData);
+    }
+
+    async updateProducts(id, product) {
+        const data = await this.getProducts();
+        const index = data.findIndex((e) => e.id === id);
+
+        if (index !== -1) {
+            product.id = id;
+            data.splice(index, 1, product);
+            await this.writeToFile(data);
+        }
+    }
+
+    async writeToFile(data) {
+        await fs.promises.writeFile(this.path, JSON.stringify(data, null, "\t"));
+    }
+
+    async getId() {
+        const data = await this.getProducts();
+        return data.length + 1;
+    }
 }
 
-module.exports = ProductManager;
+export default ProductManager;
