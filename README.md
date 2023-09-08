@@ -1,7 +1,6 @@
+# Proyecto de Gestión de Productos, Carritos y Websockets
 
-# Proyecto de Gestión de Productos y Carritos
-
-Este es un proyecto de una aplicación de gestión de productos y carritos desarrollado con Node.js y Express. La aplicación permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) en productos y carritos, siguiendo las especificaciones detalladas a continuación.
+Este es un proyecto de una aplicación de gestión de productos, carritos y websockets desarrollado con Node.js, Express y Socket.io. La aplicación permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) en productos y carritos, así como la integración de websockets para visualizar en tiempo real la lista de productos.
 
 ## Funcionalidades
 
@@ -77,13 +76,24 @@ Este es un proyecto de una aplicación de gestión de productos y carritos desar
 - Descripción: Agrega el producto especificado al carrito correspondiente al ID proporcionado.
 - Respuesta: Mensaje de éxito.
 
+### Websockets
+
+#### Visualización en Tiempo Real de la Lista de Productos
+
+- Ruta: `/realtimeproducts`
+- Descripción: Visualiza en tiempo real la lista de productos mediante websockets.
+- Conexión: El servidor debe conectarse al cliente cuando se abre la ruta.
+- Mensaje de Conexión: En la consola del servidor, se muestra un mensaje de "cliente conectado".
+- Lista de Productos: Se muestra la lista de productos y se verifica que se esté enviando desde el servidor mediante websockets.
+
 ## Instalación y Uso
 
 1. Clona este repositorio en tu máquina local.
 2. Navega a la carpeta raíz del proyecto en tu terminal.
 3. Ejecuta `npm install` para instalar las dependencias.
 4. Ejecuta `npm start` para iniciar el servidor.
-5. Utiliza herramientas como Postman o Thunder Client para realizar solicitudes a las rutas API.
+5. Abre tu navegador y visita `http://localhost:8080/` para acceder a la aplicación.
+6. Utiliza herramientas como Postman o Thunder Client para realizar solicitudes a las rutas API.
 
 
 ## Autor

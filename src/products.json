@@ -4,9 +4,9 @@
     "description": "Libro oscuro",
     "price": 1996,
     "thumbnail": "No image available",
-    "code": 896,
-    "stock": 20,
-    "status": true,
-    "id": 1
-  }
+		"code": 1123,
+		"stock": 5,
+		"status": true,
+		"id": 1
+	}
 ]

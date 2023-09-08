@@ -1,0 +1,12 @@
+//home.handlebars
+{{#each products}}
+  <p>
+    {{this.title}}
+  </p>
+
+  <p>
+    {{this.descripction}}
+  </p>
+{{/each}}
+
+<script src="/socket.io/socket.io.js"></script>
