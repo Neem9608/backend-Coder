@@ -1,12 +1,11 @@
-//home.handlebars
-{{#each products}}
-  <p>
-    {{this.title}}
-  </p>
+<!-- home.handlebars -->
 
-  <p>
-    {{this.descripction}}
-  </p>
+{{#each products}}
+ <div class="product-card">
+  <h3>{{this.title}}</h3>
+  <p>{{this.description}}</p>
+  <a href="/products/{{this._id}}">Ver detalle</a> 
+ </div>
 {{/each}}
 
 <script src="/socket.io/socket.io.js"></script>

@@ -1,12 +1,52 @@
 [
+  ©,
   {
     "title": "The Black",
-    "description": "Libro oscuro",
-    "price": 1996,
+    "description": "Libro white",
+    "price": 1990,
     "thumbnail": "No image available",
-		"code": 1123,
-		"stock": 5,
-		"status": true,
-		"id": 1
-	}
+    "code": 1123,
+    "stock": 5,
+    "status": true,
+    "id": 2,
+    "category": "Comedia",
+    "availability": "Disponible"
+  },
+  {
+    "title": "The Black",
+    "description": "Libro white",
+    "price": 1990,
+    "thumbnail": "No image available",
+    "code": 1123,
+    "stock": 5,
+    "status": true,
+    "id": 3,
+    "category": "Drama",
+    "availability": "Disponible"
+  },
+  {
+    "title": "The Black",
+    "description": "Libro white",
+    "price": 1990,
+    "thumbnail": "No image available",
+    "code": 1123,
+    "stock": 5,
+    "status": true,
+    "id": 4,
+    "category": "Comedia",
+    "availability": "No disponible"
+  },
+  {
+    "title": "The Black",
+    "description": "Libro white",
+    "price": 1990,
+    "thumbnail": "No image available",
+    "code": 1123,
+    "stock": 5,
+    "status": true,
+    "id": 5,
+    "category": "Drama",
+    "availability": "Disponible"
+  }
+  
 ]

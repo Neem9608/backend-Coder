@@ -1,0 +1,23 @@
+<!-- productDetails.handlebars -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto</title>
+</head>
+<body>
+    <h1>Detalle del Producto</h1>
+
+    <div class="product-details">
+        <h2>{{product.title}}</h2>
+        <p>{{product.description}}</p>
+        <p>Precio: ${{product.price}}</p>
+        <p>Categoría: {{product.category}}</p>
+        <p>Disponibilidad: {{product.availability}}</p>
+    </div>
+
+    <a href="/api/products">Volver a la lista de productos</a>
+</body>
+</html>
