@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 
     // Renderiza una vista con la lista de productos
     res.render('all-products', { products });
-  } catch (error) {
+  } catch (error) { 
     console.error(error);
     res.status(500).json({ message: 'Error al obtener productos' });
   }
