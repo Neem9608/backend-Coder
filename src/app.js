@@ -9,7 +9,7 @@ import { Server } from "socket.io";
 import { __dirname } from "./path.js";
 import path from "path";
 import { Product } from './dao/models/products.models.js';
-
+import sessionRouter from './routes/session.routes.js'; '
 import mongoose from "mongoose";
 
 mongoose.connect(
@@ -41,6 +41,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+inicializepassword
 app.use("/viewsRouter", viewsRouter);
 app.use("/api/products", ProductRouter);
 app.use("/api/carts", cartRouter);
