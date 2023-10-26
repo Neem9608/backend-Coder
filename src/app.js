@@ -9,8 +9,8 @@ import { Server } from "socket.io";
 import { __dirname } from "./path.js";
 import path from "path";
 import { Product } from "./dao/models/products.models.js";
-import sessionRouter from "./routes/session.routes.js";
-import inicializePassport from "./config/passport.config.js";
+ import sessionRouter from "./routes/sessionRouter.js";
+ import initializePassport from "./config/passport.config.js";
 
 mongoose.connect(
   "mongodb+srv://nelsonesman:TZ30HT9JjAnMCLfC@cluster0.gjppwzq.mongodb.net/ecommerce?retryWrites=true&w=majority"
@@ -27,13 +27,13 @@ app.use(express.urlencoded({ extended: true }));
 
 initializePassport();
 app.use(passport.initialize());
-
+app.use(cookieParser());
 app.use(
   session({
     store: MongoStore.create({
       mongoUrl:
         "mongodb+srv://nelsonesman:TZ30HT9JjAnMCLfC@cluster0.gjppwzq.mongodb.net/ecommerce?retryWrites=true&w=majority",
-      ttl: 15, 
+      ttl: 15,
     }),
     secret: "UnaCadenaSecretaMuySegura1234",
     resave: false,
