@@ -8,8 +8,8 @@ import ProductManager from "./dao/filesystem/productManager.js";
 import { Server } from "socket.io";
 import { __dirname } from "./path.js";
 import path from "path";
-import { Product } from './dao/models/products.models.js';
-import sessionRouter from './routes/session.routes.js';
+import { Product } from "./dao/models/products.models.js";
+import sessionRouter from "./routes/session.routes.js";
 import inicializePassport from "./config/passport.config.js";
 
 mongoose.connect(
@@ -22,12 +22,38 @@ const sv = app.listen(8080, () => console.log("Servidor Activo"));
 sv.on("error", (error) => console.log(error));
 const socketSv = new Server(sv);
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+initializePassport();
+app.use(passport.initialize());
+
+app.use(
+  session({
+    store: MongoStore.create({
+      mongoUrl:
+        "mongodb+srv://nelsonesman:TZ30HT9JjAnMCLfC@cluster0.gjppwzq.mongodb.net/ecommerce?retryWrites=true&w=majority",
+      ttl: 15, 
+    }),
+    secret: "UnaCadenaSecretaMuySegura1234",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
 // Configurar Handlebars como motor de plantillas
-app.engine('handlebars', handlebars.engine({
-  defaultLayout: 'main',
-  // allowProtoMethodsByDefault: true,
-  // allowProtoPropertiesByDefault: true 
-}));
+app.engine(
+  "handlebars",
+  handlebars.engine({
+    defaultLayout: "main",
+    // allowProtoMethodsByDefault: true,
+    // allowProtoPropertiesByDefault: true
+  })
+);
+app.use("/viewsRouter", viewsRouter);
+app.use("/api/products", ProductRouter);
+app.use("/api/carts", cartRouter);
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "handlebars");
 
@@ -38,27 +64,19 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-initializePassport();
-app.use(passport.initialize());
-
-app.use("/viewsRouter", viewsRouter);
-app.use("/api/products", ProductRouter);
-app.use("/api/carts", cartRouter);
-
 // Ruta para mostrar la lista de todos los productos
-app.get('/products', async (req, res) => {
+app.get("/products", async (req, res) => {
   try {
     // Realiza una consulta a la base de datos para obtener todos los productos
-    const products = await Product.find().select('title description price category availability');
+    const products = await Product.find().select(
+      "title description price category availability"
+    );
 
     // Renderiza una vista que muestre la lista de productos
-    res.render('all-products', { products });
+    res.render("all-products", { products });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error al obtener productos' });
+    res.status(500).json({ message: "Error al obtener productos" });
   }
 });
 
@@ -90,5 +108,3 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Algo salió mal en el servidor");
 });
-
-
