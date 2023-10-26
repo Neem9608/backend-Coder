@@ -9,8 +9,8 @@ import { Server } from "socket.io";
 import { __dirname } from "./path.js";
 import path from "path";
 import { Product } from './dao/models/products.models.js';
-import sessionRouter from './routes/session.routes.js'; '
-import mongoose from "mongoose";
+import sessionRouter from './routes/session.routes.js';
+import inicializePassport from "./config/passport.config.js";
 
 mongoose.connect(
   "mongodb+srv://nelsonesman:TZ30HT9JjAnMCLfC@cluster0.gjppwzq.mongodb.net/ecommerce?retryWrites=true&w=majority"
@@ -41,7 +41,9 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-inicializepassword
+initializePassport();
+app.use(passport.initialize());
+
 app.use("/viewsRouter", viewsRouter);
 app.use("/api/products", ProductRouter);
 app.use("/api/carts", cartRouter);

@@ -4,10 +4,10 @@ import mongoose from "mongoose";
 const userCollection = 'users';
 
 const userSchema = new mongoose.Schema({
-    first_name: 'string',
-    last_name: 'string',
+    first_name: string,
+    last_name: string,
     email: {
-        type: 'string',
+        type:  string,
         unique: true
     },
     age: Number,

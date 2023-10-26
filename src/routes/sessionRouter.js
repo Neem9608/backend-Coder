@@ -11,11 +11,11 @@ router.post(
     res.redirect('/login');
   }
 );
-router.post ('/login', (req, res)=> {
+router.post ('/login', async (req, res) => {
     const { email, password } = req.body;
     const user = await userModel.findOne({ email});
     if (!user) {
-        return res.status(404).send('tucuenta no exixste');
+        return res.status(404).send('tu cuenta no existe');
 }
 if (bcrypt.compareSync(password, user.password)){
     return res.status(401).send ('contraseña equivocada');
