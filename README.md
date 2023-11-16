@@ -1,49 +1,9 @@
-**Resumen del Proyecto: Creación de una Aplicación E-commerce con Node.js, Express, MongoDB y Handlebars**
+# E-commerce Backend#
 
-Este proyecto tiene como objetivo crear una aplicación de comercio electrónico utilizando tecnologías como Node.js, Express, MongoDB y Handlebars para el motor de plantillas. A continuación, se presenta un resumen de los principales pasos y conceptos cubiertos en el proyecto:
+This repository contains the code associated with the pre deliverable of the course of back-end development at CoderHouse.
 
-1. **Configuración Inicial:**
-   - Se configuró un proyecto Node.js.
-   - Se importaron y configuraron los módulos necesarios, como Express, Mongoose (para MongoDB), y Handlebars.
 
-2. **Conexión a MongoDB:**
-   - Se realizó la conexión a una base de datos MongoDB en la nube utilizando Mongoose.
-
-3. **Modelo de Datos:**
-   - Se definió un modelo de datos para los productos en la base de datos usando Mongoose. El modelo incluyó campos como título, descripción, precio, categoría y disponibilidad.
-
-4. **Rutas y Controladores:**
-   - Se crearon rutas y controladores para administrar las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) de los productos.
-
-5. **Vistas y Plantillas:**
-   - Se configuraron vistas HTML dinámicas utilizando Handlebars como motor de plantillas.
-   - Se crearon plantillas Handlebars para mostrar la lista de productos y detalles de productos.
-
-6. **Rutas y Controladores de Vistas:**
-   - Se crearon rutas y controladores para servir las vistas HTML.
-
-7. **Manejo de Errores:**
-   - Se implementó un manejador de errores para capturar y gestionar errores en la aplicación.
-
-8. **Realizar Paginación:**
-   - Se implementó una función de paginación para mostrar productos en varias páginas.
-
-9. **Acceso a Propiedades del Prototipo:**
-   - Se abordó un problema de seguridad relacionado con el acceso a propiedades del prototipo en Handlebars.
-   - Se utilizó la opción `allowProtoPropertiesByDefault` para controlar el acceso a estas propiedades.
-
-10. **Búsqueda y Filtrado de Productos:**
-    - Se implementó la búsqueda y filtrado de productos por categoría y orden ascendente o descendente de precio.
-
-11. **Servidor en Tiempo Real:**
-    - Se configuró un servidor en tiempo real usando Socket.io para enviar actualizaciones de productos en tiempo real a los clientes.
-
-12. **Despliegue (Opcional):**
-    - Si se planea implementar la aplicación en un entorno de producción, es necesario llevar a cabo un proceso de despliegue.
-
-Recuerda que este resumen es una guía general de lo que se ha cubierto en el proyecto. Cada uno de estos pasos requiere un trabajo más detallado, incluyendo la implementación de código específico y la configuración adecuada. Si tienes preguntas adicionales o necesitas más detalles sobre algún aspecto del proyecto, no dudes en preguntar.
-
-### Instalación y Uso
+## Instalación y Uso
 
 1. Clona este repositorio en tu máquina local.
 2. Navega a la carpeta raíz del proyecto en tu terminal.
@@ -53,7 +13,52 @@ Recuerda que este resumen es una guía general de lo que se ha cubierto en el pr
 6. Utiliza herramientas como Postman o Thunder Client para realizar solicitudes a las rutas API.
 
 
-## Autor
+## GUI - Available endpoints##
+
+  **products**
+
+   - http://localhost:8080/ : visualization of all the products.
+   - http://localhost:8080/realtimeproducts : visualization of the products using web sockets for real-time updates. You can add, edit or delete products in this view.
+   - http://localhost:8080/chat : online chat using web sockets for real-time updates.
+   - http://localhost:8080/products : visualization of all the products (in pages) with the possibility to add them to the cart.
+   - http://localhost:8080/carts/:cid : visualization of all the products included in a cart. You can remove products from the cart in this view or clear the cart.
+   
+   ## API - Available endpoints##
+
+  **products**
+  
+   - `GET`GET http://localhost:8080/api/products : Returns all the products, with pagination (defaults: limit=10, page=1, sort=none, query=none).
+
+   - `GET` http://localhost:8080/api/products/:pid : Returns the product with the associated productId (pid).
+
+   - `POST`POST http://localhost:8080/api/products : Creates a new product.
+
+   - `POST` http://localhost:8080/api/products/:pid/thumbnails : Uploads one or more images as thumbnails of the associated productId (pid).
+  
+   - `PUT` http://localhost:8080/api/products/:pid : Modifies the product with the associated productId (pid).
+
+   - `DELETE` http://localhost:8080/api/products/:pid : Deletes the product with the associated productId (pid).
+
+  **carts**
+  
+   - `POST` http://localhost:8080/api/carts : Creates a new cart and returns the id associated.
+
+   - `GET`  http://localhost:8080/api/carts/:cid : Gets all the products in the cart with the id passed as argument (cid).
+
+   - `POST` http://localhost:8080/api/carts/:cid/product/:pid : Adds the productId (:pid) to the cartId (:cid).
+
+   - `PUT` http://localhost:8080/api/carts/:cid : Updates all the products included in the cart.
+   - `PUT` http://localhost:8080/api/carts/:cid/product/:pid : Updates the quantity of the product in the cart.
+
+   - `DELETE`  http://localhost:8080/api/carts/:cid : Deletes all the products associated with the cart (empty).
+
+   - `DELETE`  http://localhost:8080/api/carts/:cid/product/:pid : Removes a certain product of the cart.
+
+
+## Databases
+The project can be configured to use different databases. The default database is MongoDB (using the MongoDB Atlas service), but you can change it to Node.js FileSystem implementation (using local JSONs).
+
+### Autor
 
 Escobar `backend`
 
