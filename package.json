@@ -1,7 +1,7 @@
 {
   "name": "back-coder",
   "version": "1.0.0",
-  "description": "",
+  "description": "This repository contains the code associated with the pre deliverable of the course of back-end development at CoderHouse.",
   "main": "app.js",
   "type": "module",
   "scripts": {
@@ -37,5 +37,6 @@
     "session-file-store": "^1.5.0",
     "socket.io": "^4.7.2",
     "uuid": "^9.0.1"
-  }
+  },
+  "devDependencies": {}
 }

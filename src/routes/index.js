@@ -1,7 +1,7 @@
-import viewsRouter from './views.router.js';
-import productsRouter from './products.router.js';
-import cartsRouter from './carts.router.js';
-import sessionsRouter from './sessions.router.js';
+import viewsRouter from './viewRouter.js';
+import productsRouter from './productsRouter.js';
+import cartsRouter from './cartsRouter.js';
+import sessionsRouter from './sessionRouter.js';
 
 export default (app) => {
     app.use('/', viewsRouter);
