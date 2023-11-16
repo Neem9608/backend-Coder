@@ -1,4 +1,4 @@
-import { COLORS, color } from '../utils/colors.js';
+import { COLORS, color } from '../utils/color.js';
 
 function coloredMethod(method) {
     const colors = {
